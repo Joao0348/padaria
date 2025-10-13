@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Loja da Padaria</title>
+    <link rel="stylesheet" href="/CSS/Style.css">
+</head>
+<body>
+<header>
+    <h1>🥐 Padaria Online</h1>
+    <nav>
+    </nav>
+</header>
+
+<main>
+    <!-- Lista de produtos -->
+    <section class="produtos-section">
+        <h2>🥖 Nossos Produtos</h2>
+        <div class="grid-produtos">
+
+            <div class="produto">
+                <img src="/imagens/paofrances.png" alt="Pão Francês">
+                <h3>Pão Francês</h3>
+                <p>R$ 0,80 (unidade)</p>
+                <button onclick="adicionarProduto('Pão Francês', 0.80)">Adicionar</button>
+            </div>
+
+            <div class="produto">
+                <img src="/imagens/622052-pao-de-queijo.png" alt="Pão de Queijo">
+                <h3>Pão de Queijo</h3>
+                <p>R$ 1,50 (unidade)</p>
+                <button onclick="adicionarProduto('Pão de Queijo', 1.50)">Adicionar</button>
+            </div>
+
+            <div class="produto">
+                <img src="/imagens/Massa-Basica-para-Salgados-Fritos.png" alt="Salgados">
+                <h3>Salgados</h3>
+                <p>R$ 4,00 (unidade)</p>
+                <button onclick="adicionarProduto('Salgado', 4.00)">Adicionar</button>
+            </div>
+
+            <div class="produto">
+                <img src="/imagens/cafe.png" alt="Café">
+                <h3>Café</h3>
+                <p>R$ 3,00 (copo)</p>
+                <button onclick="adicionarProduto('Café', 3.00)">Adicionar</button>
+            </div>
+
+            <div class="produto">
+                <img src="/imagens/suco-laranja.png" alt="Suco de Laranja">
+                <h3>Suco de Laranja</h3>
+                <p>R$ 5,00 (copo)</p>
+                <button onclick="adicionarProduto('Suco de Laranja', 5.00)">Adicionar</button>
+            </div>
+
+            <div class="produto">
+                <img src="/imagens/suco-de-maracuja.png" alt="Suco de Maracujá">
+                <h3>Suco de Maracujá</h3>
+                <p>R$ 5,00 (copo)</p>
+                <button onclick="adicionarProduto('Suco de Maracujá', 5.00)">Adicionar</button>
+            </div>
+
+        </div>
+    </section>
+
+    </div>
+    </section>
+
+    <!-- Carrinho -->
+    <section class="carrinho-section">
+        <h2>🛒 Seu Carrinho</h2>
+        <ul id="carrinho"></ul>
+        <p><strong>Total:</strong> R$ <span id="valorTotal">0.00</span></p>
+        <button id="finalizarCompra">Finalizar Compra</button>
+    </section>
+
+    <!-- Comprovante -->
+    <section id="comprovante" style="display: none; margin-top: 20px; padding: 15px; border: 2px solid #4CAF50; border-radius: 8px; background: #f9fff9;">
+        <h2>📄 Comprovante de Compra</h2>
+        <div id="detalhesComprovante"></div>
+    </section>
+</main>
+
+
+<script src="../JS/Script.js"></script>
+</body>
+</html>
