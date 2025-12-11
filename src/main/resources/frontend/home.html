@@ -4,84 +4,729 @@
     <meta charset="UTF-8">
     <title>Loja da Padaria</title>
     <link rel="stylesheet" href="/CSS/Style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos adicionais para a decoração da padaria */
+        :root {
+            --primary-color: #d4a762;
+            --secondary-color: #8b4513;
+            --accent-color: #f5deb3;
+            --light-color: #fff8e1;
+            --dark-color: #5d4037;
+            --text-color: #4e342e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-color);
+            color: var(--text-color);
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23d4a762' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        header h1::after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: white;
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+
+        nav {
+            margin-top: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 15px;
+            border-radius: 20px;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        section {
+            margin-bottom: 40px;
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .grid-produtos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .produto {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+            position: relative;
+        }
+
+        .produto:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .produto::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary-color);
+        }
+
+        .produto img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .produto:hover img {
+            transform: scale(1.05);
+        }
+
+        .produto h3 {
+            padding: 15px 15px 5px;
+            color: var(--dark-color);
+            font-size: 1.2rem;
+        }
+
+        .produto p {
+            padding: 0 15px;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .produto button {
+            display: block;
+            width: calc(100% - 30px);
+            margin: 15px;
+            padding: 12px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .produto button:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .carrinho-section {
+            background: var(--accent-color);
+            border: 2px dashed var(--primary-color);
+        }
+
+        .carrinho-section h2 {
+            color: var(--dark-color);
+        }
+
+        #carrinho {
+            list-style-type: none;
+            margin-bottom: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        #carrinho li {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.7);
+            margin-bottom: 8px;
+            border-radius: 8px;
+        }
+
+        #carrinho li:last-child {
+            border-bottom: none;
+        }
+
+        .carrinho-section p {
+            font-size: 1.2rem;
+            margin: 15px 0;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .forma-pagamento {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+            border: 1px solid var(--primary-color);
+        }
+
+        .forma-pagamento h3 {
+            margin-bottom: 15px;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .opcoes-pagamento {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .opcao-pagamento {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .opcao-pagamento:hover {
+            border-color: var(--primary-color);
+            background: rgba(212, 167, 98, 0.1);
+        }
+
+        .opcao-pagamento.selecionado {
+            border-color: var(--secondary-color);
+            background: rgba(139, 69, 19, 0.1);
+        }
+
+        .opcao-pagamento input {
+            margin: 0;
+        }
+
+        .opcao-pagamento i {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+        }
+
+        /* Estilos para o QR Code do PIX */
+        .qr-code-pix {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            border: 2px solid var(--primary-color);
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .qr-code-pix h4 {
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .qr-code-pix img {
+            max-width: 250px;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .codigo-pix {
+            background: #f5f5f5;
+            padding: 12px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            word-break: break-all;
+            margin: 15px 0;
+            border: 1px dashed #ccc;
+        }
+
+        .instrucoes-pix {
+            text-align: left;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .instrucoes-pix h5 {
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+
+        .instrucoes-pix ol {
+            margin-left: 20px;
+        }
+
+        .instrucoes-pix li {
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+
+        #finalizarCompra {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        #finalizarCompra:hover {
+            background: var(--dark-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        #finalizarCompra:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        #comprovante {
+            background: linear-gradient(135deg, #f9fff9, #e8f5e8);
+            border: 2px solid #4CAF50;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer {
+            background: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+
+        .bread-icon {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.7;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .grid-produtos {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .opcoes-pagamento {
+                grid-template-columns: 1fr;
+            }
+
+            .qr-code-pix img {
+                max-width: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .grid-produtos {
+                grid-template-columns: 1fr;
+            }
+
+            main {
+                padding: 0 10px;
+            }
+
+            section {
+                padding: 15px;
+            }
+
+            .qr-code-pix img {
+                max-width: 180px;
+            }
+        }
+    </style>
 </head>
 <body>
 <header>
-    <h1>🥐 Padaria Online</h1>
+    <h1><i class="fas fa-bread-slice"></i> Padaria Online</h1>
     <nav>
+        <a href="cadastro.html"><i class="fas fa-user-plus"></i> Cadastro</a>
+        <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="sobre.html"><i class="fas fa-info-circle"></i> Sobre</a>
     </nav>
 </header>
 
 <main>
     <!-- Lista de produtos -->
     <section class="produtos-section">
-        <h2>🥖 Nossos Produtos</h2>
+        <h2><i class="fas fa-bread-slice"></i> Nossos Produtos Fresquinhos</h2>
         <div class="grid-produtos">
 
             <div class="produto">
                 <img src="/imagens/paofrances.png" alt="Pão Francês">
                 <h3>Pão Francês</h3>
                 <p>R$ 0,80 (unidade)</p>
-                <button onclick="adicionarProduto('Pão Francês', 0.80)">Adicionar</button>
+                <button onclick="adicionarProduto('Pão Francês', 0.80)">Adicionar ao Carrinho</button>
             </div>
 
             <div class="produto">
                 <img src="/imagens/622052-pao-de-queijo.png" alt="Pão de Queijo">
                 <h3>Pão de Queijo</h3>
                 <p>R$ 1,50 (unidade)</p>
-                <button onclick="adicionarProduto('Pão de Queijo', 1.50)">Adicionar</button>
+                <button onclick="adicionarProduto('Pão de Queijo', 1.50)">Adicionar ao Carrinho</button>
             </div>
 
             <div class="produto">
                 <img src="/imagens/Massa-Basica-para-Salgados-Fritos.png" alt="Salgados">
                 <h3>Salgados</h3>
                 <p>R$ 4,00 (unidade)</p>
-                <button onclick="adicionarProduto('Salgado', 4.00)">Adicionar</button>
+                <button onclick="adicionarProduto('Salgado', 4.00)">Adicionar ao Carrinho</button>
             </div>
 
             <div class="produto">
                 <img src="/imagens/cafe.png" alt="Café">
                 <h3>Café</h3>
                 <p>R$ 3,00 (copo)</p>
-                <button onclick="adicionarProduto('Café', 3.00)">Adicionar</button>
+                <button onclick="adicionarProduto('Café', 3.00)">Adicionar ao Carrinho</button>
             </div>
 
             <div class="produto">
                 <img src="/imagens/suco-laranja.png" alt="Suco de Laranja">
                 <h3>Suco de Laranja</h3>
                 <p>R$ 5,00 (copo)</p>
-                <button onclick="adicionarProduto('Suco de Laranja', 5.00)">Adicionar</button>
+                <button onclick="adicionarProduto('Suco de Laranja', 5.00)">Adicionar ao Carrinho</button>
             </div>
 
             <div class="produto">
                 <img src="/imagens/suco-de-maracuja.png" alt="Suco de Maracujá">
                 <h3>Suco de Maracujá</h3>
                 <p>R$ 5,00 (copo)</p>
-                <button onclick="adicionarProduto('Suco de Maracujá', 5.00)">Adicionar</button>
+                <button onclick="adicionarProduto('Suco de Maracujá', 5.00)">Adicionar ao Carrinho</button>
             </div>
 
         </div>
     </section>
 
-    </div>
-    </section>
-
     <!-- Carrinho -->
     <section class="carrinho-section">
-        <h2>🛒 Seu Carrinho</h2>
+        <h2><i class="fas fa-shopping-cart"></i> Seu Carrinho</h2>
         <ul id="carrinho"></ul>
         <p><strong>Total:</strong> R$ <span id="valorTotal">0.00</span></p>
-        <button id="finalizarCompra">Finalizar Compra</button>
+
+        <!-- Forma de Pagamento -->
+        <div class="forma-pagamento">
+            <h3><i class="fas fa-credit-card"></i> Forma de Pagamento</h3>
+            <div class="opcoes-pagamento">
+                <label class="opcao-pagamento">
+                    <input type="radio" name="pagamento" value="pix">
+                    <i class="fab fa-pix"></i>
+                    <span>PIX</span>
+                </label>
+                <label class="opcao-pagamento">
+                    <input type="radio" name="pagamento" value="debito">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Cartão Débito</span>
+                </label>
+                <label class="opcao-pagamento">
+                    <input type="radio" name="pagamento" value="credito">
+                    <i class="far fa-credit-card"></i>
+                    <span>Cartão Crédito</span>
+                </label>
+            </div>
+
+            <!-- QR Code do PIX -->
+            <div class="qr-code-pix" id="qrCodePix">
+                <h4><i class="fab fa-pix"></i> Pagamento via PIX</h4>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=PIX_PADARIA_ONLINE_123456789" alt="QR Code PIX">
+                <p><strong>Valor:</strong> R$ <span id="valorPix">0.00</span></p>
+                <div class="codigo-pix">
+                    00020126580014br.gov.bcb.pix0136123e4567-e12b-12d1-a456-4266141740005204000053039865405<span id="valorPixCodigo">0.00</span>5802BR5913PADARIA ONLINE6008SAO PAULO62290525PIXPADARIAONLINE1234567896304
+                </div>
+                <div class="instrucoes-pix">
+                    <h5>Como pagar:</h5>
+                    <ol>
+                        <li>Abra o app do seu banco</li>
+                        <li>Escaneie o QR Code acima</li>
+                        <li>Confirme o pagamento</li>
+                        <li>Aguarde a confirmação</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <button id="finalizarCompra" disabled>Finalizar Compra</button>
     </section>
 
     <!-- Comprovante -->
-    <section id="comprovante" style="display: none; margin-top: 20px; padding: 15px; border: 2px solid #4CAF50; border-radius: 8px; background: #f9fff9;">
-        <h2>📄 Comprovante de Compra</h2>
+    <section id="comprovante" style="display: none;">
+        <h2><i class="fas fa-receipt"></i> Comprovante de Compra</h2>
         <div id="detalhesComprovante"></div>
     </section>
 </main>
 
+<footer>
+    <p>Padaria Online &copy; 2023 - Todos os direitos reservados</p>
+    <p><i class="fas fa-phone"></i> (11) 1234-5678 | <i class="fas fa-envelope"></i> contato@padariaonline.com</p>
+</footer>
 
-<script src="../JS/Script.js"></script>
+<script>
+    // Funções JavaScript existentes
+    let carrinho = [];
+    let total = 0;
+    let formaPagamento = '';
+
+    function adicionarProduto(nome, preco) {
+        carrinho.push({ nome, preco });
+        total += preco;
+        atualizarCarrinho();
+
+        // Feedback visual
+        const botao = event.target;
+        const originalText = botao.textContent;
+        botao.textContent = "Adicionado!";
+        botao.style.background = "#4CAF50";
+
+        setTimeout(() => {
+            botao.textContent = originalText;
+            botao.style.background = "";
+        }, 1000);
+    }
+
+    function atualizarCarrinho() {
+        const listaCarrinho = document.getElementById('carrinho');
+        const valorTotal = document.getElementById('valorTotal');
+        const finalizarBtn = document.getElementById('finalizarCompra');
+        const qrCodePix = document.getElementById('qrCodePix');
+        const valorPix = document.getElementById('valorPix');
+        const valorPixCodigo = document.getElementById('valorPixCodigo');
+
+        listaCarrinho.innerHTML = '';
+        carrinho.forEach((item, index) => {
+            const li = document.createElement('li');
+            li.innerHTML = `
+                ${item.nome} - R$ ${item.preco.toFixed(2)}
+                <button onclick="removerItem(${index})" style="background: #ff5252; color: white; border: none; border-radius: 4px; padding: 5px 10px; cursor: pointer;">
+                    <i class="fas fa-trash"></i>
+                </button>
+            `;
+            listaCarrinho.appendChild(li);
+        });
+
+        valorTotal.textContent = total.toFixed(2);
+
+        // Atualizar valores do PIX
+        valorPix.textContent = total.toFixed(2);
+        valorPixCodigo.textContent = total.toFixed(2);
+
+        // Habilitar/desabilitar botão de finalizar
+        finalizarBtn.disabled = carrinho.length === 0 || !formaPagamento;
+    }
+
+    function removerItem(index) {
+        total -= carrinho[index].preco;
+        carrinho.splice(index, 1);
+        atualizarCarrinho();
+    }
+
+    // Configurar seleção de forma de pagamento
+    document.querySelectorAll('input[name="pagamento"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            formaPagamento = this.value;
+
+            // Remover classe selecionada de todas as opções
+            document.querySelectorAll('.opcao-pagamento').forEach(opcao => {
+                opcao.classList.remove('selecionado');
+            });
+
+            // Adicionar classe selecionada à opção escolhida
+            this.closest('.opcao-pagamento').classList.add('selecionado');
+
+            // Mostrar/ocultar QR Code do PIX
+            const qrCodePix = document.getElementById('qrCodePix');
+            if (formaPagamento === 'pix' && carrinho.length > 0) {
+                qrCodePix.style.display = 'block';
+            } else {
+                qrCodePix.style.display = 'none';
+            }
+
+            atualizarCarrinho();
+        });
+    });
+
+    document.getElementById('finalizarCompra').addEventListener('click', function() {
+        if (carrinho.length === 0) {
+            alert('Seu carrinho está vazio!');
+            return;
+        }
+
+        if (!formaPagamento) {
+            alert('Por favor, selecione uma forma de pagamento!');
+            return;
+        }
+
+        const comprovante = document.getElementById('comprovante');
+        const detalhes = document.getElementById('detalhesComprovante');
+
+        // Mapear nomes das formas de pagamento
+        const formasPagamento = {
+            'pix': 'PIX',
+            'debito': 'Cartão de Débito',
+            'credito': 'Cartão de Crédito'
+        };
+
+        let html = `
+            <p><strong>Data:</strong> ${new Date().toLocaleString()}</p>
+            <p><strong>Forma de Pagamento:</strong> ${formasPagamento[formaPagamento]}</p>
+            <p><strong>Itens comprados:</strong></p>
+            <ul style="list-style-type: none; padding: 0;">
+        `;
+
+        carrinho.forEach(item => {
+            html += `<li>${item.nome} - R$ ${item.preco.toFixed(2)}</li>`;
+        });
+
+        html += `
+            </ul>
+            <p><strong>Total: R$ ${total.toFixed(2)}</strong></p>
+            <p style="color: #4CAF50; font-weight: bold;">Obrigado pela sua compra!</p>
+        `;
+
+        // Adicionar QR Code no comprovante se for PIX
+        if (formaPagamento === 'pix') {
+            html += `
+                <div style="margin-top: 20px; padding: 15px; background: #f9f9f9; border-radius: 8px; text-align: center;">
+                    <h4><i class="fab fa-pix"></i> QR Code para Pagamento</h4>
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=PIX_PADARIA_ONLINE_${Date.now()}" alt="QR Code PIX" style="max-width: 200px;">
+                    <p style="margin-top: 10px; font-size: 0.9rem;">Escaneie este QR Code para efetuar o pagamento</p>
+                </div>
+            `;
+        }
+
+        detalhes.innerHTML = html;
+        comprovante.style.display = 'block';
+
+        // Limpar carrinho após finalizar compra
+        carrinho = [];
+        total = 0;
+        formaPagamento = '';
+        document.querySelectorAll('input[name="pagamento"]').forEach(radio => {
+            radio.checked = false;
+        });
+        document.querySelectorAll('.opcao-pagamento').forEach(opcao => {
+            opcao.classList.remove('selecionado');
+        });
+        document.getElementById('qrCodePix').style.display = 'none';
+
+        atualizarCarrinho();
+
+        // Rolar para o comprovante
+        comprovante.scrollIntoView({ behavior: 'smooth' });
+    });
+</script>
 </body>
 </html>

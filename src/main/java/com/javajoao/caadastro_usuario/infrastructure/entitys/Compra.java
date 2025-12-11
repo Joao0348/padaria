@@ -1,35 +1,30 @@
 package com.javajoao.caadastro_usuario.infrastructure.entitys;
 
 
-import jakarta.persistence.*;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 @Builder
-@Entity
-@Table(name = "tb_compra")
+@NoArgsConstructor
+@AllArgsConstructor
+@Document(collection = "compras")
 public class Compra {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    @ManyToOne
-    @JoinColumn(name = "usuario_id")
+    private String id;
+
+    @DBRef
     private Usuario usuario;
-    @ManyToMany
-    @JoinTable(
-            name = "tb_compra_produto",
-            joinColumns = @JoinColumn(name = "compra_id"),
-            inverseJoinColumns = @JoinColumn(name = "padaria_id")
-    )
+
+    @DBRef
     private List<Padaria> produtos;
-    @Column(name = "data_compra")
+
     private LocalDateTime dataCompra;
-    @Column(name = "valor_total")
     private Double valorTotal;
+
 }

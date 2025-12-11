@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos - Padaria Medeiros</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Padaria Medeiros</h1>
+    <nav>
+        <a href="produtos.html">Produtos</a>
+        <a href="carrinho.html">Carrinho</a>
+        <a href="sobre.html">Sobre</a>
+    </nav>
+</header>
+
+<main>
+
+    <h2>Nosso Menu</h2>
+
+    <!-- FILTRO POR CATEGORIA -->
+    <div id="filtros" style="text-align: center; margin-bottom: 20px;">
+
+        <button onclick="filtrar('todas')">Todas</button>
+        <button onclick="filtrar('bebidas')">Bebidas</button>
+        <button onclick="filtrar('salgados')">Salgados</button>
+        <button onclick="filtrar('doces')">Doces</button>
+        <button onclick="filtrar('paes')">Pães</button>
+        <button onclick="filtrar('bolos')">Bolos</button>
+    </div>
+
+    <!-- Lista de produtos -->
+    <div id="lista-produtos" class="produtos"></div>
+
+
+    <!-- AQUI os produtos do MongoDB serão inseridos -->
+
+    <div style="margin-top: 30px; text-align: center;">
+        <button class="comprar" onclick="adicionarTodos()">🛒 Adicionar Todos</button>
+    </div>
+</main>
+
+<footer>
+    <p>Padaria Medeiros © 2025 - Todos os direitos reservados.</p>
+</footer>
+
+<!-- IMPORTANTE: Script deve ficar no final -->
+<script src="../JS/produtos.js"></script>
+
+</body>
+</html>

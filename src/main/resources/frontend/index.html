@@ -1,10 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento - Padaria Medeiros</title>
+    <link rel="stylesheet" href="../CSS/style.css">
 </head>
 <body>
+
+<header>
+    <h1>Padaria Medeiros</h1>
+    <nav></nav>
+</header>
+
+<main>
+    <h2>💳 Escolha a forma de pagamento</h2>
+
+    <div class="pagamentos">
+        <button onclick="mostrarPix()">Pix</button>
+        <button onclick="mostrarDinheiro()">Dinheiro</button>
+    </div>
+
+    <!-- PIX -->
+    <div id="pix-section" class="pagamento-section" style="display: none;">
+        <h3>📱 Pague com Pix</h3>
+        <p>Escaneie o QR Code abaixo:</p>
+
+        <img
+                src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=PadariaMedeirosPIX123"
+                alt="QR Code Pix"
+                class="qrcode"
+        >
+
+        <p><strong>Chave Pix:</strong> 059.703.791-40</p>
+
+        <button onclick="confirmarPagamento('PIX')">
+            ✅ Confirmar Pagamento
+        </button>
+    </div>
+
+    <!-- DINHEIRO -->
+    <div id="dinheiro-section" class="pagamento-section" style="display: none;">
+        <h3>💵 Pagamento em Dinheiro</h3>
+
+        <p>Total da compra: <strong id="total-compra">R$ 0,00</strong></p>
+
+        <label>Quanto vai pagar?</label>
+        <input type="number" id="valorCliente" step="0.01" placeholder="Ex: 50.00">
+
+        <button onclick="calcularTroco()">Calcular Troco</button>
+
+        <p id="resultadoTroco"></p>
+
+        <button onclick="confirmarPagamento('Dinheiro')">
+            ✅ Confirmar Pagamento
+        </button>
+    </div>
+
+    <!-- NOTA FISCAL -->
+    <div id="nota-fiscal" class="nota-fiscal" style="display: none;">
+        <h3>🧾 Nota Fiscal</h3>
+        <div id="detalhes-nota"></div>
+
+        <button onclick="finalizar()" class="btn-fechar">
+            Fechar e Voltar aos Produtos
+        </button>
+    </div>
+
+</main>
+
+<script src="../JS/pagamento.js"></script>
 
 </body>
 </html>

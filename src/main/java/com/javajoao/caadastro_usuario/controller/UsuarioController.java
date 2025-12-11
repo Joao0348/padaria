@@ -9,41 +9,57 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+@CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/usuario")
+@RequestMapping("/usuarios")
 @RequiredArgsConstructor
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
 
-
     @PostMapping
-    public ResponseEntity<Void> salvarUsuario(@RequestBody Usuario usuario) {
-        usuarioService.salvarUsuario(usuario);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+    public ResponseEntity<Usuario> criarUsuario(@RequestBody Usuario usuario) {
+        System.out.println("Recebendo POST /usuarios -> " + usuario.getNome());
+
+        Usuario usuarioSalvo = usuarioService.salvarUsuario(usuario);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioSalvo);
     }
 
-
-    @GetMapping
+    @GetMapping("/cpf")
     public ResponseEntity<Usuario> buscarUsuarioPorCpf(@RequestParam String cpf) {
-        return ResponseEntity.ok(usuarioService.buscarUsuarioPorCpf(cpf)); // Retorna 200 OK com o usuário
+        Usuario usuario = usuarioService.buscarUsuarioPorCpf(cpf);
+
+        if (usuario == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+        return ResponseEntity.ok(usuario);
     }
-    @DeleteMapping
+
+    @DeleteMapping("/cpf")
     public ResponseEntity<Void> deletarUsuarioPorCpf(@RequestParam String cpf) {
         usuarioService.deletarUsuarioPorCpf(cpf);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 
- @PutMapping
- public ResponseEntity<Void>atualizarUsuarioPorCpf(@RequestParam String cpf,
-                                                   @RequestBody Usuario usuario) {
-  usuarioService.atualizarUsuarioPorCpf(cpf, usuario);
-  return ResponseEntity.ok().build();
- }
- @GetMapping("/todos")
-    public ResponseEntity<List<Usuario>> listarTodos() {
-        return ResponseEntity.ok(usuarioService.ListarTodos());
- }
+    @PutMapping("/cpf")
+    public ResponseEntity<Usuario> atualizarUsuarioPorCpf(@RequestParam String cpf,
+                                                          @RequestBody Usuario usuario) {
 
+        usuarioService.atualizarUsuarioPorCpf(cpf, usuario);
+        Usuario usuarioAtualizado = usuarioService.buscarUsuarioPorCpf(cpf);
+
+        if (usuarioAtualizado == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+        return ResponseEntity.ok(usuarioAtualizado);
+    }
+
+    @GetMapping("/todos")
+    public ResponseEntity<List<Usuario>> listarTodos() {
+        List<Usuario> usuarios = usuarioService.listarTodos();
+        return ResponseEntity.ok(usuarios);
+    }
 }

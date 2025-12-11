@@ -1,60 +1,39 @@
 package com.javajoao.caadastro_usuario.infrastructure.entitys;
-import jakarta.persistence.*;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import lombok.*;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-@Entity
-@Table(name = "tb_padaria")
+
+@Document(collection = "produtos")
 public class Padaria {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    @Column(name = "nome")
+    private String id;
+    private String imagem;
     private String nome;
-
-    @Column(name = "preco")
     private Double preco;
-
-    @Column(name = "quantidade")
     private Integer quantidade;
 
-// ===== Getters e Setters =====
+    // ✅ Novo campo
+    private String categoria;
 
-    public Long getId() {
-        return id;
-    }
+    // ===== Getters e Setters =====
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public String getImagem() { return imagem; }
+    public void setImagem(String imagem) { this.imagem = imagem; }
 
-    public String getNome() {
-        return nome;
-    }
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+    public Double getPreco() { return preco; }
+    public void setPreco(Double preco) { this.preco = preco; }
 
-    public Double getPreco() {
-        return preco;
-    }
+    public Integer getQuantidade() { return quantidade; }
+    public void setQuantidade(Integer quantidade) { this.quantidade = quantidade; }
 
-    public void setPreco(Double preco) {
-        this.preco = preco;
-    }
-
-    public Integer getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(Integer quantidade) {
-        this.quantidade = quantidade;
-    }
+    public String getCategoria() { return categoria; }
+    public void setCategoria(String categoria) { this.categoria = categoria; }
 }

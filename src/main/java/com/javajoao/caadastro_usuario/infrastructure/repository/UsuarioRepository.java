@@ -1,21 +1,24 @@
 package com.javajoao.caadastro_usuario.infrastructure.repository;
 
 import com.javajoao.caadastro_usuario.infrastructure.entitys.Usuario;
-import jakarta.transaction.Transactional;
-import org.springframework.data.jpa.repository.JpaRepository;
 
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
 import java.util.Optional;
 
-public interface UsuarioRepository extends JpaRepository<Usuario,Long>{
+public interface UsuarioRepository extends MongoRepository<Usuario, String> {
 
+    // Busca um usuário pelo CPF
+    Optional<Usuario> findByCpf(String cpf);
 
+    // Deleta um usuário pelo CPF
 
-
-    Optional<Usuario>findByCpf(String cpf);
-    @Transactional
     void deleteByCpf(String cpf);
 
+    Usuario save(Usuario usuario);
 
-
-
+    List<Usuario> findAll();
 }
+

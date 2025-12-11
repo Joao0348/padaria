@@ -1,8 +1,11 @@
 package com.javajoao.caadastro_usuario.infrastructure.entitys;
-import jakarta.persistence.*;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.annotation.Id;
+
 import lombok.AllArgsConstructor;
 import lombok.*;
 import lombok.NoArgsConstructor;
+import org.springframework.data.mongodb.core.index.Indexed;
 
 import java.time.LocalDate;
 
@@ -12,35 +15,35 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name="tb_usuario")
-@Entity
+@Document(collection = "tb_usuario") // equivalente ao @Table
 public class Usuario {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private String id;
 
-    @Column(name = "nome")
     private String nome;
 
-    @Column(name = "cpf", unique = true )
+    @Indexed(unique = true)
     private String cpf;
 
-    @Column(name = "dataNascimento")
-    private LocalDate dataNascimento;
-
-    @Column(name = "email")
+    private LocalDate datanascimento;
     private String email;
-
-    @Column(name = "telefone")
     private String telefone;
 
+    // ===== Getters e Setters MANUAIS (se quiser sobrescrever o Lombok) =====
 
+    public String getId() {
+        return id;
+    }
 
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getCpf() {
         return cpf;
     }
+
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
@@ -48,6 +51,7 @@ public class Usuario {
     public String getNome() {
         return nome;
     }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -55,6 +59,7 @@ public class Usuario {
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -62,18 +67,16 @@ public class Usuario {
     public String getTelefone() {
         return telefone;
     }
+
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
+    public LocalDate getDatanascimento() {
+        return datanascimento;
     }
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
+
+    public void setDatanascimento(LocalDate datanascimento) {
+        this.datanascimento = datanascimento;
     }
-    public Long getId(){return id;}
-
-    public void setId(Long id){this.id = id;}
-
 }

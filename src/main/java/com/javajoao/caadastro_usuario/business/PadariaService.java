@@ -2,42 +2,52 @@ package com.javajoao.caadastro_usuario.business;
 import com.javajoao.caadastro_usuario.exceptions.ResourceNotFoundException;
 import com.javajoao.caadastro_usuario.infrastructure.entitys.Padaria;
 import com.javajoao.caadastro_usuario.infrastructure.repository.PadariaRepository;
-import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.List;
 
 @Service
 public class PadariaService {
 
-    @Autowired
-    private PadariaRepository repository;
+    private final PadariaRepository padariaRepository;
 
-    public void salvarPadaria(Padaria padaria) {
-        repository.saveAndFlush(padaria);
-    }
-    public Padaria buscarPorId(Long id) {
-        return repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(id));
-    }
-    public void deletarPorId(Long id) {
-        if (!repository.existsById(id)) {
-            throw new ResourceNotFoundException(id);
-        }
-        repository.deleteById(id);
-    }
-    public void atualizarPadaria(Long id, Padaria novaPadaria){
-        Padaria existente = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Item de padaria nao encontrado com id: " + id)) ;
-        existente.setNome(novaPadaria.getNome());
-        existente.setPreco(novaPadaria.getPreco());
-        existente.setQuantidade(novaPadaria.getQuantidade());
-
-        repository.save(existente);
+    public PadariaService(PadariaRepository padariaRepository) {
+        this.padariaRepository = padariaRepository;
     }
 
+    public Padaria salvarPadaria(Padaria padaria){
+        return padariaRepository.save(padaria);
+    }
+
+    public Padaria buscarPorId(String id){
+        return (Padaria) padariaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Item não encontrado com ID: " + id));
+    }
+
+    public List<Padaria> listarTodos(){
+        return padariaRepository.findAll();
+    }
+
+    public Padaria atualizarPadaria(String id, Padaria novaPadaria){
+        Padaria existente = (Padaria) padariaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Item de padaria não encontrado com ID: " + id));
+        if (novaPadaria.getImagem() != null) existente.setImagem(novaPadaria.getImagem());
+        if (novaPadaria.getNome() != null) existente.setNome(novaPadaria.getNome());
+        if (novaPadaria.getPreco() != null) existente.setPreco(novaPadaria.getPreco());
+        if (novaPadaria.getQuantidade() != null) existente.setQuantidade(novaPadaria.getQuantidade());
 
 
+        return padariaRepository.save(existente);
+    }
+
+    public void deletarPorId(String id){
+        padariaRepository.deleteById(id);
+    }
+
+    public List<Padaria> buscarPorCategoria(String categoria) {
+        return null;
+    }
 }
+
+
