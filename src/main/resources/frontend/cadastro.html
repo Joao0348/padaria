@@ -316,8 +316,7 @@
     <!-- 🔽 ADICIONEI A NAVEGAÇÃO AQUI 🔽 -->
     <nav>
         <a href="home.html"><i class="fas fa-home"></i> Voltar para Home</a>
-        <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
-        <a href="sobre.html"><i class="fas fa-info-circle"></i> Sobre</a>
+
     </nav>
 </header>
 
@@ -457,6 +456,7 @@
         try {
             // 🔥 AQUI ESTÁ A LINHA CORRIGIDA 🔥
             const response = await fetch('http://localhost:8080/usuarios', {
+
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
